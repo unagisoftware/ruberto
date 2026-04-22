@@ -7,16 +7,17 @@ gemspec
 
 gem "rake", "~> 13.0"
 
-gem "pry-byebug", "~> 3.9"
+gem "pry-byebug", "~> 3.10"
 
-gem "rubocop", "~> 1.21"
+gem "rubocop", "~> 1.71"
 
 group :development do
+  gem "brakeman"
   gem "dotenv"
 end
 
 group :test do
-  gem "minitest", "~> 5.16"
+  gem "minitest", "~> 6.0"
   gem "minitest-reporters", "~> 1.7"
   gem "webmock"
 end

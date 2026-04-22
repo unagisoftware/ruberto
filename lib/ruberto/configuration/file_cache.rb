@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "yaml/store"
+require "pstore"
 
 module Ruberto
   class FileCache
     def initialize(file_cache_path)
       @file_cache_path = file_cache_path
-      @store = YAML::Store.new(file_cache_path)
+      @store = PStore.new(file_cache_path)
     end
 
     def read(key) = @store.transaction { @store[key] }

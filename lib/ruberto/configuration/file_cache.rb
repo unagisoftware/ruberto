@@ -22,7 +22,7 @@ module Ruberto
     private
 
     def reset_if_incompatible!
-      @store.transaction(true) { }
+      @store.transaction(true) {}
     rescue StandardError
       clear
       @store = PStore.new(@file_cache_path)

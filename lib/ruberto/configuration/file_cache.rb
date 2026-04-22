@@ -7,6 +7,7 @@ module Ruberto
     def initialize(file_cache_path)
       @file_cache_path = file_cache_path
       @store = PStore.new(file_cache_path)
+      reset_if_incompatible!
     end
 
     def read(key) = @store.transaction { @store[key] }
@@ -17,5 +18,14 @@ module Ruberto
     end
 
     def delete(key) = @store.transaction { @store.delete(key) }
+
+    private
+
+    def reset_if_incompatible!
+      @store.transaction(true) { }
+    rescue StandardError
+      clear
+      @store = PStore.new(@file_cache_path)
+    end
   end
 end

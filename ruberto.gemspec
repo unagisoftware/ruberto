@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "Ruby bindings for Uber's API"
   spec.homepage = "https://github.com/unagisoftware/ruberto"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.0.0"
+  spec.required_ruby_version = ">= 3.4"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/unagisoftware/ruberto"
@@ -33,4 +33,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "faraday", "~> 2.0"
   spec.add_dependency "faraday-net_http_persistent"
+  spec.add_dependency "ostruct"
+  spec.add_dependency "pstore"
 end

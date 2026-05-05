@@ -52,5 +52,19 @@ module Ruberto
       assert "value2", @cache.read("key1")
       assert_nil @cache.read("key2")
     end
+
+    def test_migrates_from_yaml_store_format
+      yaml_path = "ruberto_legacy_cache.yaml"
+      legacy = YAML::Store.new(yaml_path)
+      legacy.transaction { legacy["token"] = "old_value" }
+
+      cache = FileCache.new(yaml_path)
+
+      assert_nil cache.read("token")
+      cache.write("token", "new_value")
+      assert_equal "new_value", cache.read("token")
+    ensure
+      File.delete(yaml_path) if File.exist?(yaml_path)
+    end
   end
 end
